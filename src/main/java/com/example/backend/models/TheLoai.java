@@ -1,12 +1,12 @@
 package com.example.backend.models;
 
-import com.example.backend.common.RoleName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.*;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -14,27 +14,14 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public class Account {
+public class TheLoai {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idTaiKhoan;
-
-    private String username;
-
-    private String password;
+    private Integer idTheLoai;
 
     private LocalDateTime createdAt;
 
-    private boolean deletedAt;
-
-    @Enumerated(EnumType.STRING)
-    private RoleName role;
-
-    @OneToOne
-    private UserInfo userInfo;
-
-    @OneToOne
-    private GiangVien giangVien;
+    @OneToMany
+    private List<KhoaHoc> khoaHocList = new ArrayList<>();
 }
-
